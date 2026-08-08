@@ -1,7 +1,8 @@
-from backend.db.base_class import Base
+from ..base_class import Base
 from sqlalchemy import Boolean, Column, Integer, String, DateTime
 from datetime import datetime, timezone
 from sqlalchemy.orm import relationship
+from .blog import Blog
 
 class User(Base):
     __tablename__ = "users"

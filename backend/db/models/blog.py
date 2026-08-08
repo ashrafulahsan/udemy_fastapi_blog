@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from sqlalchemy import Column, Integer, Text, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from backend.db.base_class import Base
+from ..base_class import Base
 
 class Blog(Base):
     __tablename__ = "blogs"

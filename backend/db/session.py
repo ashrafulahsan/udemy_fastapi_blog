@@ -1,7 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from ..core.config import settings
-
+try:
+    from backend.core.config import settings
+except ModuleNotFoundError:
+    from core.config import settings
+from typing import Generator
 
 SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 print(f"SQLALCHEMY_DATABASE_URL: {SQLALCHEMY_DATABASE_URL}")
@@ -14,3 +17,12 @@ except Exception as exc:
     engine = None
     SessionLocal = None
 
+
+def get_db() -> Generator:
+    if SessionLocal is None:
+        raise RuntimeError("Database session is not initialized.")
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
