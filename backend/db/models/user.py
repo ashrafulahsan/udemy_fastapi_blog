@@ -1,4 +1,4 @@
-from db.base_class import Base
+from backend.db.base_class import Base
 from sqlalchemy import Boolean, Column, Integer, String, DateTime
 from datetime import datetime, timezone
 from sqlalchemy.orm import relationship
@@ -19,4 +19,4 @@ class User(Base):
     )
     
 
-    blogs = relationship("Blog", back_populates="users")
+    blogs = relationship("Blog", back_populates="user")

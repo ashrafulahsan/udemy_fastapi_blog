@@ -1,4 +1,4 @@
-alembic """Create user and blog table
+"""Create user and blog table
 
 Revision ID: 8237f11adb1f
 Revises: 

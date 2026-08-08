@@ -1,17 +1,13 @@
 from fastapi import FastAPI
 from backend.core.config import settings
 from backend.db.session import engine
-from backend.db.base_class import Base
+from backend.db.base import Base
 
 def create_tables():
     if not engine:
-        print("Database engine is not available; skipping table creation.")
-        return
+        raise RuntimeError("Database engine is not available.")
 
-    try:
-        Base.metadata.create_all(bind=engine)
-    except Exception as exc:
-        print(f"Warning: could not create tables: {exc}")
+    Base.metadata.create_all(bind=engine)
 
 def start_application():
     create_tables()
