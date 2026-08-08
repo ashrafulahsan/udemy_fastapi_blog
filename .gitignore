@@ -1,6 +1,6 @@
 
 *__pycache__
+*.mypy_cache
 *.pyc
-.env
 env
 testbd.db
