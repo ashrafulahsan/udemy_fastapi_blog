@@ -1,9 +1,9 @@
 def total_price(price1: float, price2: float) -> float:   
     return price1 + price2
 
-sum = total_price('10.5', '20.3')
+total = total_price(10.5, 20.3)
 
-print(f"The total price is: {sum}")
+print(f"The total price is: {total}")
 
 # from typing import List, Tuple, Dict
 
