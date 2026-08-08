@@ -3,4 +3,6 @@
 *.mypy_cache
 *.pyc
 env
+.env
+.env.*
 testbd.db
