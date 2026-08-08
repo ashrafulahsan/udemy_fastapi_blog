@@ -1,3 +1,7 @@
 fastapi
 uvicorn
 mypy
+pydantic
+SQLAlchemy
+psycopg2
+python-dotenv
