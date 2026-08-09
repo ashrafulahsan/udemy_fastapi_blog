@@ -35,3 +35,12 @@ def update_blog_by_id(id: int, blog: UpdateBlog, db: Session, user_id: int = 1):
     db.commit()
     db.refresh(existing_blog)
     return existing_blog
+
+def delete_blog_by_id(id: int, db: Session, user_id: int = 1):
+    existing_blog = db.query(Blog).filter(Blog.id == id, Blog.user_id == user_id).first()
+    if not existing_blog:
+        return None
+
+    db.delete(existing_blog)
+    db.commit()
+    return {"message": f"Blog with id {id} has been deleted successfully."}
