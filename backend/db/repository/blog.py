@@ -43,4 +43,4 @@ def delete_blog_by_id(id: int, db: Session, user_id: int = 1):
 
     db.delete(existing_blog)
     db.commit()
-    return {"message": f"Blog with id {id} has been deleted successfully."}
+    return {"detail": f"Blog with id {id} has been deleted successfully."}
