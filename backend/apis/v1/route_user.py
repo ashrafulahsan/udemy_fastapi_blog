@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from backend.schemas.user import UserCreate, ShowUser
+from backend.schemas.user import UserCreate, ShowUser, status
 from backend.db.session import get_db
 from backend.db.repository.user import create_new_user
 
 
 router = APIRouter()
 
-@router.post("/users/", response_model=ShowUser)
+@router.post("/users/", response_model=ShowUser, status_code=status.HTTP_201_CREATED)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return create_new_user(user=user, db=db)
