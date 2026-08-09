@@ -19,6 +19,9 @@ class CreateBlog(BaseModel):
             values['slug'] = title.lower().replace(' ', '-')
         return values
 
+class UpdateBlog(CreateBlog):
+    pass
+
 
 class ShowBlog(BaseModel):
     id: int
