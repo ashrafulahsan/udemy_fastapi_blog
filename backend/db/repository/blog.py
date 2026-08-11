@@ -24,8 +24,10 @@ def list_blogs(db: Session):
 
 def update_blog_by_id(id: int, blog: UpdateBlog, db: Session, user_id: int = 1):
     existing_blog = db.query(Blog).filter(Blog.id == id, Blog.user_id == user_id).first()
-    if not existing_blog:
-        return None
+    if not existing_blog:        
+        return {"error": f"Blog with id {id} not found or you do not have permission to update it."}
+    if not existing_blog.user_id == user_id:
+        return {"error": "You do not have permission to update this blog."}
 
     existing_blog.title = blog.title
     existing_blog.slug = blog.slug
@@ -39,7 +41,9 @@ def update_blog_by_id(id: int, blog: UpdateBlog, db: Session, user_id: int = 1):
 def delete_blog_by_id(id: int, db: Session, user_id: int = 1):
     existing_blog = db.query(Blog).filter(Blog.id == id, Blog.user_id == user_id).first()
     if not existing_blog:
-        return None
+        return {"error": f"Blog with id {id} not found or you do not have permission to delete it."}
+    if not existing_blog.user_id == user_id:
+        return {"error": "You do not have permission to delete this blog."}
 
     db.delete(existing_blog)
     db.commit()
